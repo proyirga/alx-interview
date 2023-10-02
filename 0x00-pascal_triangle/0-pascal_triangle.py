@@ -3,6 +3,7 @@
 Pascal traingle
 """
 
+
 def pascal_triangle(n):
     """
     Pascal triangle
