@@ -1,6 +1,12 @@
 #!/usr/bin/python3
+"""
+Pascal traingle
+"""
 
 def pascal_triangle(n):
+    """
+    Pascal triangle
+    """
     if n <= 0:
         return []
     result = [[1]]
