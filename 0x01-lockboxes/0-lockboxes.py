@@ -4,6 +4,7 @@
 
 def canUnlockAll(boxes):
     """Can boxes be unlocked"""
+
     if not isinstance(boxes, list) or not all(isinstance(box, list) for box in boxes):
         return False
 
