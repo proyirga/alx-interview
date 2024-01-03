@@ -39,24 +39,24 @@ def validUTF8(data):
                     lambda x: x & 0b11000000 == 0b10000000,
                     data[i + 1: i + span],
                     ))
-                    if not all(next_body):
-                        return False
-                    skip = span - 1
-                else:
+                if not all(next_body):
                     return False
-            elif data[i] & 0b11100000 == 0b11000000:
-                # 2-byte utf-8 character encoding
-                span = 2
-                if n - i >= span:
-                    next_body = list(map(
-                        lambda x: x & 0b11000000 == 0b10000000,
-                        data[i + 1: i + span],
-                        ))
-                    if not all(next_body):
-                        return False
-                    skip = span - 1
-                else:
-                    return False
+                skip = span - 1
             else:
                 return False
-        return True
+        elif data[i] & 0b11100000 == 0b11000000:
+            # 2-byte utf-8 character encoding
+            span = 2
+            if n - i >= span:
+                next_body = list(map(
+                    lambda x: x & 0b11000000 == 0b10000000,
+                    data[i + 1: i + span],
+                    ))
+                if not all(next_body):
+                    return False
+                skip = span - 1
+            else:
+                return False
+        else:
+            return False
+    return True
